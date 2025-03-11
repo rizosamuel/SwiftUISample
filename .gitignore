@@ -1,0 +1,39 @@
+# Xcode files and build artifacts
+DerivedData/
+*.xcworkspace/
+*.xcuserstate
+xcuserdata/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/xcshareddata/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Ignore user-specific files
+.DS_Store
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Ignore logs and temp files
+*.log
+*.tmp
+
+# Ignore environment files
+.env

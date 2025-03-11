@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct SwiftUISampleApp: App {
+    
+    @StateObject var router = RouterImpl()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DashboardView()
+                .environmentObject(router)
         }
     }
 }
