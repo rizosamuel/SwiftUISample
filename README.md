@@ -1,70 +1,103 @@
-# SwiftUISample
+# 📱 SwiftUISample
 
-SwiftUISample is an iOS application built using SwiftUI. It provides a tab-based navigation system with multiple sections, including Home, Categories, My Orders, and Account. The project utilizes `NavigationStack`, `TabView`, and an MVVM architecture for a clean and scalable codebase.
+SwiftUISample is a modular iOS app built using SwiftUI and follows the **Clean Architecture** pattern. It separates UI, business logic, and data layers for better maintainability and scalability.
 
-## Features
+---
 
-- **Tab-Based Navigation**: Includes Home, Categories, My Orders, and Account sections.
-- **NavigationStack**: Enables deep navigation within each tab.
-- **Router Implementation**: Manages navigation across different views.
-- **MVVM Architecture**: Uses `ObservableObject` for state management.
-- **Search Functionality**: A basic search bar in the Home view.
-- **Category Listing**: Displays a list of predefined categories.
-- **User Account Section**: Includes a profile picture, wishlist, cart, and settings.
+## 🚀 Features
 
-## Project Structure
+- **🏠 Home View** – Displays a list of featured items.
+- **📂 Categories View** – Lists categories dynamically.
+- **🛍 My Orders View** – Shows user orders.
+- **👤 Account View** – Displays user profile and settings.
+- **🔄 Navigation Management** – Uses a custom `RouterImpl` for screen transitions.
+- **🗂 Clean Architecture** – Organizes code into `Data`, `Domain`, and `Presentation` layers.
 
-```
-SwiftUISample/
-│── SwiftUISampleApp.swift
-│── Router.swift
-│── Views/
-│   │── DashboardView.swift
-│   │── HomeView.swift
-│   │── CategoriesView.swift
-│   │── OrdersView.swift
-│   │── AccountView.swift
-│── ViewModels/
-│   │── HomeViewModel.swift
-│   │── CategoriesViewModel.swift
-│── Models/
-│── Assets.xcassets
-│── README.md
-```
+---
 
-## Installation
+## 🏗 Architecture
 
-1. Clone the repository:
-   ```sh
+This project follows **Clean Architecture**, dividing responsibilities into layers:
+
+### **Layer Responsibilities**
+- **Data Layer:** Fetches data from APIs or local storage.
+- **Domain Layer:** Contains business logic.
+- **Presentation Layer:** Handles UI and ViewModels.
+
+---
+
+## 📸 Screenshots (Placeholder)
+
+| Home View | Categories View | Account View |
+|-----------|---------------|--------------|
+| ![Home](screenshots/home.png) | ![Categories](screenshots/categories.png) | ![Account](screenshots/account.png) |
+
+---
+
+## 🛠 Installation
+
+1. **Clone the repository**:
    git clone https://github.com/yourusername/SwiftUISample.git
-   ```
-2. Open the project in Xcode:
-   ```sh
    cd SwiftUISample
-   open SwiftUISample.xcodeproj
-   ```
-3. Build and run the app on a simulator or device.
+   
+2. Open the project in Xcode:
+    open SwiftUISample.xcodeproj
 
-## Usage
+3. Run the project:
+    Select a simulator or device in Xcode.
+    Press Cmd + R to build and run.
 
-- **Home Tab**: Displays products and categories.
-- **Categories Tab**: Shows a list of available categories.
-- **My Orders Tab**: Placeholder for order history.
-- **Account Tab**: Displays user information and account options.
+## 📂 Project Structure
 
-## Git Ignore
+·/
+│── SwiftUISample.xcodeproj      # Xcode project file
+│── SwiftUISample/               # Main source code
+│   ├── Data/                    # Handles API, local storage, and models
+│   ├── Domain/                  # Business logic, use cases
+│   ├── Presentation/             # SwiftUI Views, ViewModels
+│   ├── Utilities/                # Helpers and extensions
+│   ├── Resources/                # Assets, colors, fonts
+│   ├── Supporting Files/         # Configurations and constants
+│── README.md                    # Project documentation
+│── .gitignore                    # Git ignore unnecessary files
 
-The `.gitignore` file ensures unnecessary files are not tracked by Git. It includes:
+## 📌 Usage & Navigation
 
-- Derived data and build files
-- Xcode workspace settings
-- User-specific settings
-- `.DS_Store` and other macOS system files
+·Tab Navigation:
+    The app has a TabView with 4 tabs (Home, Categories, Orders, Account).
+    Each tab uses a NavigationStack for deep navigation.
 
-## Contributing
+·Routing:
+    The RouterImpl class manages navigation.
+    Use router.navigate(to: .categories, switchTab: true) to switch tabs.
 
-Contributions are welcome! Feel free to submit a pull request.
+·Back Navigation:
+    router.goBack() removes the last navigation entry.
 
-## License
+·Reset to Root:
+    router.resetToRoot(for: selectedTab)
+    
+## 🤝 Contributing
 
-This project is licensed under the MIT License.
+1. Fork the project.
+
+2. Create a feature branch:
+    git checkout -b feature-branch
+
+3. Commit your changes:
+    git commit -m "Added new feature"
+
+4. Push to the branch:
+    git push origin feature-branch
+
+5. Open a Pull Request.
+
+## ⚖️ License
+
+This project is open-source and available under the MIT License.
+
+## 📬 Contact
+
+For any issues or suggestions, feel free to create an issue or reach out!
+
+🎉 Happy Coding!
