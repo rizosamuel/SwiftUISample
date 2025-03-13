@@ -115,6 +115,7 @@ class RouterImpl: Router {
         default:
             break
         }
+        
         if var history = navigationHistory[selectedTab], !history.isEmpty {
             history.removeLast()
             navigationHistory[selectedTab] = history
@@ -147,6 +148,4 @@ class RouterImpl: Router {
         navigationHistory[.account] = []
         selectedTab = .home
     }
-    
-    
 }

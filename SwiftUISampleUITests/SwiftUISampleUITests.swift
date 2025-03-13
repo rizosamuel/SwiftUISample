@@ -21,6 +21,15 @@ final class SwiftUISampleUITests: XCTestCase {
         XCTAssertTrue(homeView.exists, "HomeView should be visible on launch")
     }
     
+    func testNavigationToHome() {
+        let homeTab = app.buttons["Home"]
+        XCTAssertTrue(homeTab.exists, "Home tab should exist")
+        homeTab.tap()
+        
+        let homeView = app.scrollViews["HomeView"]
+        XCTAssertTrue(homeView.exists, "Should navigate to HomeView")
+    }
+    
     func testNavigationToCategories() {
         let categoriesTab = app.buttons["Categories"]
         XCTAssertTrue(categoriesTab.exists, "Categories tab should exist")

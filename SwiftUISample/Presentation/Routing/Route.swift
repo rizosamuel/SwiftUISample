@@ -5,26 +5,7 @@
 //  Created by Rijo Samuel on 11/03/25.
 //
 
-@propertyWrapper
-struct TabValue {
-    private var value: Tab
-
-    init(wrappedValue: Tab) {
-        self.value = wrappedValue
-    }
-
-    var wrappedValue: Tab {  // ✅ Now correctly returns a Tab
-        get { value }
-        set { value = newValue }
-    }
-
-    var projectedValue: Int { // ✅ Provides an Int representation
-        value.rawValue
-    }
-}
-
-
-enum Tab: Int,CaseIterable {
+enum Tab: Int, CaseIterable {
     case home
     case categories
     case myOrders
@@ -45,7 +26,7 @@ enum Route: Int, Hashable {
     case notifications
     case settings
     
-    var toTab:Tab? {
+    var toTab: Tab? {
         switch self {
         case .home:
             return Tab.home
@@ -59,7 +40,7 @@ enum Route: Int, Hashable {
             return nil
         }
     }
-        
+    
     func hash(into hasher: inout Hasher) {
         switch self {
         case .home:
