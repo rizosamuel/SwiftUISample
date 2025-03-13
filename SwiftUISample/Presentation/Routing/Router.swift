@@ -20,13 +20,13 @@ protocol Router: ObservableObject {
     var myOrdersPath: NavigationPath { get set }
     var accountPath: NavigationPath { get set }
     
-    var selectedTab: Int { get set }
+    var selectedTabIndex: Int { get set }
     var navigationEventHandler: ((NavigationEvent) -> Void)? { get set }
     
     func navigate(to route: Route, switchTab: Bool)
     func canNavigate(to route: Route) -> Bool
     func goBack()
-    func resetToRoot(for tab: Int)
+    func resetToRoot(for tab: Tab)
     func resetAll()
     // func presentModal(_ modal: ModalType)
     // func dismissModal()
@@ -40,10 +40,26 @@ class RouterImpl: Router {
     @Published var myOrdersPath = NavigationPath()
     @Published var accountPath = NavigationPath()
     
-    @Published var selectedTab: Int = 0
+    @Published var selectedTabIndex: Int = 0 {
+        didSet {
+            guard let tab = Tab.getCurrentTab(with: selectedTabIndex) else {
+                return
+            }
+            selectedTab = tab
+        }
+    }
+    
     var navigationEventHandler: ((NavigationEvent) -> Void)?
     
-    private var navigationHistory: [Int: [Route]] = [0: [], 1: [], 2: [], 3: []]
+    private var navigationHistory: [Tab: [Route]] = [:]
+    
+    private var selectedTab: Tab = .home
+    
+    init() {
+        Tab.allCases.forEach { tab in
+            navigationHistory[tab] = []
+        }
+    }
     
     func navigate(to route: Route, switchTab: Bool = false) {
         
@@ -56,24 +72,25 @@ class RouterImpl: Router {
         navigationEventHandler?(.willNavigate(to: route))
         
         // Update selected tab
-        selectedTab = switchTab ? route.rawValue : selectedTab
+        if let targetTab = route.toTab, switchTab {
+            selectedTabIndex = targetTab.rawValue
+        }
         
         // Add to navigation history for the appropriate tab
         navigationHistory[selectedTab]?.append(route)
         
         // Add to the appropriate navigation path
-        switch selectedTab {
-        case 0:
-            homePath.append(route)
-        case 1:
-            categoriesPath.append(route)
-        case 2:
-            myOrdersPath.append(route)
-        case 3:
-            accountPath.append(route)
-        default:
-            // This shouldn't happen, but just in case
-            homePath.append(route)
+        if !switchTab {
+            switch selectedTab {
+            case .home:
+                homePath.append(route)
+            case .categories:
+                categoriesPath.append(route)
+            case .myOrders:
+                myOrdersPath.append(route)
+            case .account:
+                accountPath.append(route)
+            }
         }
         
         // Notify that navigation has happened
@@ -87,64 +104,49 @@ class RouterImpl: Router {
     
     func goBack() {
         switch selectedTab {
-        case 0 where !homePath.isEmpty:
+        case .home where !homePath.isEmpty:
             homePath.removeLast()
-            if var history = navigationHistory[0], !history.isEmpty {
-                history.removeLast()
-                navigationHistory[0] = history
-            }
-        case 1 where !categoriesPath.isEmpty:
+        case .categories where !categoriesPath.isEmpty:
             categoriesPath.removeLast()
-            if var history = navigationHistory[1], !history.isEmpty {
-                history.removeLast()
-                navigationHistory[1] = history
-            }
-        case 2 where !myOrdersPath.isEmpty:
+        case .myOrders where !myOrdersPath.isEmpty:
             myOrdersPath.removeLast()
-            if var history = navigationHistory[2], !history.isEmpty {
-                history.removeLast()
-                navigationHistory[2] = history
-            }
-        case 3 where !accountPath.isEmpty:
+        case .account where !accountPath.isEmpty:
             accountPath.removeLast()
-            if var history = navigationHistory[3], !history.isEmpty {
-                history.removeLast()
-                navigationHistory[3] = history
-            }
         default:
             break
+        }
+        if var history = navigationHistory[selectedTab], !history.isEmpty {
+            history.removeLast()
+            navigationHistory[selectedTab] = history
         }
     }
     
     // Reset the navigation stack for a specific tab
-    func resetToRoot(for tab: Int) {
+    func resetToRoot(for tab: Tab) {
+        navigationHistory[tab] = []
         switch tab {
-        case 0:
+        case .home:
             homePath.removeLast(homePath.count)
-            navigationHistory[0] = []
-        case 1:
+        case .categories:
             categoriesPath.removeLast(categoriesPath.count)
-            navigationHistory[1] = []
-        case 2:
+        case .myOrders:
             myOrdersPath.removeLast(myOrdersPath.count)
-            navigationHistory[2] = []
-        case 3:
+        case .account:
             accountPath.removeLast(accountPath.count)
-            navigationHistory[3] = []
-        default:
-            break
         }
     }
     
     func resetAll() {
         homePath.removeLast(homePath.count)
-        navigationHistory[0] = []
+        navigationHistory[.home] = []
         categoriesPath.removeLast(categoriesPath.count)
-        navigationHistory[1] = []
+        navigationHistory[.categories] = []
         myOrdersPath.removeLast(myOrdersPath.count)
-        navigationHistory[2] = []
+        navigationHistory[.myOrders] = []
         accountPath.removeLast(accountPath.count)
-        navigationHistory[3] = []
-        selectedTab = 0
+        navigationHistory[.account] = []
+        selectedTab = .home
     }
+    
+    
 }

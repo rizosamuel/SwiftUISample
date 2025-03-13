@@ -16,12 +16,15 @@ struct NavIcons: View {
             Button(action: { router.navigate(to: .wishlist) }) {
                 Image(systemName: "heart")
             }
+            .accessibilityIdentifier("Wishlist")
             Button(action: { router.navigate(to: .notifications) }) {
                 Image(systemName: "bell")
             }
+            .accessibilityIdentifier("Notifications")
             Button(action: { router.navigate(to: .cart) }) {
                 Image(systemName: "cart")
             }
+            .accessibilityIdentifier("Cart")
         }
     }
 }

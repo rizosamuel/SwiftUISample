@@ -25,6 +25,7 @@ struct CategoriesView: View {
             .padding()
         }
         .navigationTitle("Categories")
+        .accessibilityIdentifier("CategoriesView")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavIcons()
@@ -35,9 +36,6 @@ struct CategoriesView: View {
     private var featuredCategoriesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader(title: "Featured")
-                .onTapGesture {
-                    router.navigate(to: .categories, switchTab: true)
-                }
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {

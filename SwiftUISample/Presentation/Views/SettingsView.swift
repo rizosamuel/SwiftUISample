@@ -20,6 +20,7 @@ struct SettingsView: View {
                     Section(header: Text("About")) {
                         NavigationLink(destination: Text("Version")) {
                             Text("Version: 1.0.0")
+                                .foregroundColor(Color(.systemGray))
                         }
                     }
                 }

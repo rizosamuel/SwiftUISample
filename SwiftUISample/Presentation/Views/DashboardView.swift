@@ -10,16 +10,21 @@ import SwiftUI
 struct DashboardView: View {
     
     @EnvironmentObject private var router: RouterImpl
-    
+
     init() {
         UITabBar.appearance().backgroundColor = UIColor.systemBackground
     }
     
+    @StateObject var viewmodel = HomeViewModel()
+  
+    
     var body: some View {
-        TabView(selection: $router.selectedTab) {
+        TabView(selection: $router.selectedTabIndex) {
             NavigationStack(path: $router.homePath) {
-                HomeView()
+
+                HomeView(viewModel: viewmodel)
                     .withNavigationDestinations()
+               
             }
             .tabItem {
                 Label("Home", systemImage: "house.fill")

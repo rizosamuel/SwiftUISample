@@ -40,6 +40,7 @@ struct AccountView: View {
             }
             .navigationTitle("Account")
         }
+        .accessibilityIdentifier("AccountView")
     }
 }
 

@@ -10,8 +10,12 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var router: RouterImpl
-    @StateObject private var viewModel = HomeViewModel()
+    @StateObject private var viewModel: HomeViewModel
     @State private var searchText = ""
+    
+    init(viewModel: HomeViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         ScrollView {
@@ -31,6 +35,7 @@ struct HomeView: View {
             }
             .padding()
         }
+        .accessibilityIdentifier("HomeView")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 // Custom Profile View for navigation bar
@@ -215,5 +220,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel())
 }

@@ -13,7 +13,7 @@ extension View {
         self.navigationDestination(for: Route.self) { route in
             switch route {
             case .home:
-                HomeView()
+                HomeView(viewModel: HomeViewModel())
             case .categories:
                 CategoriesView()
             case .myOrders:

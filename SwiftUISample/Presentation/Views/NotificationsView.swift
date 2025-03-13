@@ -26,23 +26,16 @@ struct NotificationsView: View {
                 .foregroundColor(.gray)
                 .padding(.top, 8)
             
-            Button(action: {
-                router.resetAll()
-            }) {
-                Text("View Products")
-                    .fontWeight(.bold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .padding(.horizontal, 40)
-            }
-            .padding(.top, 12)
+            Text("Stay in touch! You will find all the new updates here")
+                .font(.callout)
+                .foregroundColor(Color(.systemGray2))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
             
             Spacer()
         }
         .navigationTitle("Notifications")
+        .accessibilityIdentifier("NotificationsView")
     }
 }
 

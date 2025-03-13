@@ -74,6 +74,7 @@ struct OrdersView: View {
                 }
             }
         }
+        .accessibilityIdentifier("OrdersView")
     }
 }
 

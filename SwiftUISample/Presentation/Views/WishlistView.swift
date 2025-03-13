@@ -43,6 +43,8 @@ struct WishlistView: View {
             Spacer()
         }
         .navigationTitle("Wishlist")
+        .accessibilityIdentifier("WishlistView")
+        .accessibilityElement(children: .contain)
     }
 }
 

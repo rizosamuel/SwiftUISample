@@ -43,6 +43,7 @@ struct CartView: View {
             Spacer()
         }
         .navigationTitle("Cart")
+        .accessibilityIdentifier("CartView")
     }
 }
 
