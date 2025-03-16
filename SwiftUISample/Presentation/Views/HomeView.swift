@@ -9,9 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var router: RouterImpl
+    @EnvironmentObject private var router: RouterImpl
     @StateObject private var viewModel: HomeViewModel
     @State private var searchText = ""
+    @State private var isChatViewActive = false
     
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -82,7 +83,7 @@ struct HomeView: View {
             sectionHeader(title: "Featured Products", actionLabel: "See All")
                 .onTapGesture {
                     // Navigate to all featured products
-                    router.navigate(to: .categories, switchTab: true)
+                    router.navigate(to: .featuredProducts, switchTab: false)
                 }
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -90,6 +91,7 @@ struct HomeView: View {
                     ForEach(viewModel.featuredProducts) { product in
                         productCard(product)
                             .onTapGesture {
+                                router.navigate(to: .chat)
                                 // router.navigate(to: .productDetail(product: product), switchTab: false)
                             }
                     }

@@ -6,6 +6,7 @@
 //
 
 struct Product: Identifiable, Hashable {
+    
     let id: String
     let name: String
     let description: String

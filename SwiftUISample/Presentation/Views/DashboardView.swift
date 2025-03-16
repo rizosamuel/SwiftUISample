@@ -10,29 +10,31 @@ import SwiftUI
 struct DashboardView: View {
     
     @EnvironmentObject private var router: RouterImpl
-
+    @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject private var categoriesViewModel = CategoriesViewModel()
+    @StateObject private var ordersViewModel = MyOrdersViewModel()
+    @StateObject private var accountViewModel = AccountViewModel()
+    
     init() {
         UITabBar.appearance().backgroundColor = UIColor.systemBackground
     }
     
-    @StateObject var viewmodel = HomeViewModel()
-  
-    
     var body: some View {
         TabView(selection: $router.selectedTabIndex) {
+            
+            // home tab
             NavigationStack(path: $router.homePath) {
-
-                HomeView(viewModel: viewmodel)
+                HomeView(viewModel: homeViewModel)
                     .withNavigationDestinations()
-               
             }
             .tabItem {
                 Label("Home", systemImage: "house.fill")
             }
             .tag(0)
             
+            // categories tab
             NavigationStack(path: $router.categoriesPath) {
-                CategoriesView()
+                CategoriesView(viewModel: categoriesViewModel)
                     .withNavigationDestinations()
             }
             .tabItem {
@@ -40,8 +42,9 @@ struct DashboardView: View {
             }
             .tag(1)
             
+            // my orders tab
             NavigationStack(path: $router.myOrdersPath) {
-                OrdersView()
+                OrdersView(viewModel: ordersViewModel)
                     .withNavigationDestinations()
             }
             .tabItem {
@@ -49,8 +52,9 @@ struct DashboardView: View {
             }
             .tag(2)
             
+            // account tab
             NavigationStack(path: $router.accountPath) {
-                AccountView()
+                AccountView(viewModel: accountViewModel)
                     .withNavigationDestinations()
             }
             .tabItem {

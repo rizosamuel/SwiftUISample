@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavIcons: View {
     
-    @EnvironmentObject var router: RouterImpl
+    @EnvironmentObject private var router: RouterImpl
     
     var body: some View {
         HStack(spacing: 0) {

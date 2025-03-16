@@ -9,8 +9,12 @@ import SwiftUI
 
 struct CategoriesView: View {
     
-    @EnvironmentObject var router: RouterImpl
-    @StateObject private var viewModel = CategoriesViewModel()
+    @EnvironmentObject private var router: RouterImpl
+    @StateObject private var viewModel: CategoriesViewModel
+    
+    init(viewModel: CategoriesViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         ScrollView {
@@ -151,5 +155,5 @@ struct CategoriesView: View {
 }
 
 #Preview {
-    CategoriesView()
+    CategoriesView(viewModel: CategoriesViewModel())
 }

@@ -9,7 +9,12 @@ import SwiftUI
 
 struct AccountView: View {
     
-    @EnvironmentObject var router: RouterImpl
+    @EnvironmentObject private var router: RouterImpl
+    @StateObject private var viewModel: AccountViewModel
+    
+    init(viewModel: AccountViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         NavigationView {
@@ -45,5 +50,5 @@ struct AccountView: View {
 }
 
 #Preview {
-    AccountView()
+    AccountView(viewModel: AccountViewModel())
 }

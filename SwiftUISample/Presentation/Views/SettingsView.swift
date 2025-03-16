@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @EnvironmentObject private var router: RouterImpl
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -17,7 +20,11 @@ struct SettingsView: View {
                             Text("Mode: Light")
                         }
                     }
-                    Section(header: Text("About")) {
+                    
+                    Section(header: Text("Others")) {
+                        Button("Support") {
+                            router.navigate(to: .chat)
+                        }
                         NavigationLink(destination: Text("Version")) {
                             Text("Version: 1.0.0")
                                 .foregroundColor(Color(.systemGray))
@@ -28,6 +35,7 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
         }
+        .accessibilityIdentifier("SettingsView")
     }
 }
 

@@ -9,8 +9,13 @@ import SwiftUI
 
 struct OrdersView: View {
     
-    @EnvironmentObject var router: RouterImpl
+    @EnvironmentObject private var router: RouterImpl
+    @StateObject private var viewModel: MyOrdersViewModel
     @State private var searchText = ""
+    
+    init(viewModel: MyOrdersViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         NavigationView {
@@ -79,6 +84,6 @@ struct OrdersView: View {
 }
 
 #Preview {
-    OrdersView()
+    OrdersView(viewModel: MyOrdersViewModel())
 }
 

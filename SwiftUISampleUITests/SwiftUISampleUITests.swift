@@ -62,10 +62,13 @@ final class SwiftUISampleUITests: XCTestCase {
         XCTAssertTrue(wishlistButton.exists, "Wishlist button should exist")
         wishlistButton.tap()
         
-        let wishlistText = app/*@START_MENU_TOKEN@*/.staticTexts["WishlistView"]/*[[".staticTexts[\"No products in your wishlist\"]",".staticTexts[\"WishlistView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        let wishlistViewImage = app/*@START_MENU_TOKEN@*/.images["WishlistView"]/*[[".images[\"Love\"]",".images[\"WishlistView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        XCTAssertTrue(wishlistText.exists, "Should navigate to WishlistView")
-        XCTAssertTrue(wishlistViewImage.exists, "Should navigate to WishlistView")
+        let wishlistView = app.otherElements["WishlistView"]
+        XCTAssertTrue(wishlistView.exists, "Should navigate to WishlistView")
+        
+        let wishlistViewImage = app.images["heart.fill"]
+        let wishlistText = app.staticTexts["No products in your wishlist"]
+        XCTAssertTrue(wishlistViewImage.exists, "Heart image must exist")
+        XCTAssertTrue(wishlistText.exists, "Empty wishlist text must exist")
     }
     
     func testNavigationToNotifications() {
@@ -73,10 +76,13 @@ final class SwiftUISampleUITests: XCTestCase {
         XCTAssertTrue(notificationsTab.exists, "Notifications button should exist")
         notificationsTab.tap()
         
-        let notificationsText = app.staticTexts["NotificationsView"]
-        let notificationsViewImage = app.images["NotificationsView"]
-        XCTAssertTrue(notificationsText.exists, "Should navigate to NotificationsView")
-        XCTAssertTrue(notificationsViewImage.exists, "Should navigate to NotificationsView")
+        let notificationsView = app.otherElements["NotificationsView"]
+        XCTAssertTrue(notificationsView.exists, "Should navigate to NotificationsView")
+        
+        let notificationsViewImage = app.images["bell.fill"]
+        let notificationsText = app.staticTexts["No new notifications"]
+        XCTAssertTrue(notificationsViewImage.exists, "Bell image must exist")
+        XCTAssertTrue(notificationsText.exists, "Empty notifications text must exist")
     }
     
     func testNavigationToCart() {
@@ -84,10 +90,13 @@ final class SwiftUISampleUITests: XCTestCase {
         XCTAssertTrue(cartTab.exists, "Cart button should exist")
         cartTab.tap()
         
-        let cartText = app.staticTexts["CartView"]
-        let cartViewImage = app.images["CartView"]
-        XCTAssertTrue(cartText.exists, "Should navigate to CartView")
-        XCTAssertTrue(cartViewImage.exists, "Should navigate to CartView")
+        let cartView = app.otherElements["CartView"]
+        XCTAssertTrue(cartView.exists, "Should navigate to CartView")
+        
+        let cartViewImage = app.images["cart.fill"]
+        let cartText = app.staticTexts["No products in your cart"]
+        XCTAssertTrue(cartViewImage.exists, "Cart image must exist")
+        XCTAssertTrue(cartText.exists, "Empty cart text must exist")
     }
     
     func testNavigationToSettings() {
@@ -98,10 +107,11 @@ final class SwiftUISampleUITests: XCTestCase {
         let accountView = app.otherElements["AccountView"]
         XCTAssertTrue(accountView.exists, "Should navigate to AccountView")
         
-        
         let app = XCUIApplication()
         app.tabBars["Tab Bar"].buttons["Account"].tap()
         app.collectionViews.buttons["Settings"].tap()
-                        
+        
+        let settingsView = app.otherElements["SettingsView"]
+        XCTAssertTrue(settingsView.exists, "Should navigate to SettingsView")
     }
 }

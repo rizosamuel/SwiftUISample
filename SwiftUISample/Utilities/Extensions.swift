@@ -12,14 +12,8 @@ extension View {
     func withNavigationDestinations() -> some View {
         self.navigationDestination(for: Route.self) { route in
             switch route {
-            case .home:
-                HomeView(viewModel: HomeViewModel())
-            case .categories:
-                CategoriesView()
-            case .myOrders:
-                OrdersView()
-            case .account:
-                AccountView()
+            case .home, .categories, .myOrders, .account:
+                EmptyView()
             case .cart:
                 CartView()
             case .wishlist:
@@ -28,6 +22,10 @@ extension View {
                 NotificationsView()
             case .settings:
                 SettingsView()
+            case .chat: 
+                ChatView(viewModel: ChatViewModel(chatRepository: MultipeerManager()))
+            case .featuredProducts:
+                FeaturedProductsView(viewModel: FeaturedProductsViewModel())
             }
         }
     }

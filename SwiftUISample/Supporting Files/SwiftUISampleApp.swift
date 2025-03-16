@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct SwiftUISampleApp: App {
     
-    @StateObject var router = RouterImpl()
+    @StateObject private var router = RouterImpl()
     
     var body: some Scene {
         WindowGroup {
