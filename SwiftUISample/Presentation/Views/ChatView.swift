@@ -15,7 +15,7 @@ struct ChatView: View {
     init(viewModel: ChatViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
         VStack {
             ScrollViewReader { scrollView in
@@ -44,17 +44,17 @@ struct ChatView: View {
                         }
                     }
                 }
-                .onChange(of: viewModel.messages.count) { _ in
+                .onChange(of: viewModel.messages.count) {
                     withAnimation {
                         scrollView.scrollTo(viewModel.messages.last?.id, anchor: .bottom)
                     }
                 }
             }
-
+            
             HStack {
                 TextField("Type a message...", text: $messageText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                
                 Button(action: {
                     viewModel.sendMessage(messageText)
                     messageText = ""

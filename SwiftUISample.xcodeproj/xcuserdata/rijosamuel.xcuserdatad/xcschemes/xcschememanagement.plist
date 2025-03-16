@@ -7,7 +7,7 @@
 		<key>SwiftUISample.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<key>SwiftUISampleSwiftUnitTests.xcscheme_^#shared#^_</key>
 		<dict>
@@ -27,7 +27,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>C141E5A22D840034008132D6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D4C6B4202D8002210092D063</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4EEED282D82B10100D87DB8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

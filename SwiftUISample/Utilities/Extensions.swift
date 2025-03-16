@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 // MARK: - Navigation Destination Extension
 extension View {
@@ -21,11 +22,17 @@ extension View {
             case .notifications:
                 NotificationsView()
             case .settings:
-                SettingsView()
-            case .chat: 
-                ChatView(viewModel: ChatViewModel(chatRepository: MultipeerManager()))
+                let biometricsRepo = BiometricsRepositoryImpl(context: LAContext())
+                let userDefaultsRepo = UserDefaultsRepositoryImpl()
+                let viewModel = SettingsViewModel(biometricsRepo: biometricsRepo, userDefaultsRepo: userDefaultsRepo)
+                SettingsView(viewModel: viewModel)
+            case .chat:
+                let chatRepo = MultipeerManager()
+                let viewModel = ChatViewModel(chatRepository: chatRepo)
+                ChatView(viewModel: viewModel)
             case .featuredProducts:
-                FeaturedProductsView(viewModel: FeaturedProductsViewModel())
+                let viewModel = FeaturedProductsViewModel()
+                FeaturedProductsView(viewModel: viewModel)
             }
         }
     }

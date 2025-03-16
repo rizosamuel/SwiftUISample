@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct SettingsView: View {
     
     @EnvironmentObject private var router: RouterImpl
+    @StateObject private var viewModel: SettingsViewModel
+    
+    init(viewModel: SettingsViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         NavigationView {
@@ -19,6 +25,13 @@ struct SettingsView: View {
                         NavigationLink(destination: Text("Mode")) {
                             Text("Mode: Light")
                         }
+                    }
+                    
+                    Section(header: Text("Security")) {
+                        Toggle("Enable App Lock", isOn: Binding(
+                            get: { viewModel.isAppLockEnabled },
+                            set: { viewModel.toggleAppLock(isEnabled: $0) }
+                        ))
                     }
                     
                     Section(header: Text("Others")) {
@@ -40,5 +53,7 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    let biometricsRepo = BiometricsRepositoryImpl(context: LAContext())
+    let userDefaultsRepo = UserDefaultsRepositoryImpl()
+    SettingsView(viewModel: SettingsViewModel(biometricsRepo: biometricsRepo, userDefaultsRepo: userDefaultsRepo))
 }

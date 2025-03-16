@@ -6,16 +6,29 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 @main
 struct SwiftUISampleApp: App {
     
-    @StateObject private var router = RouterImpl()
+    private let router = RouterImpl()
+    private let userDefaultsRepository = UserDefaultsRepositoryImpl()
+    
+    var isAppLockEnabled: Bool {
+        userDefaultsRepository.get(forKey: Constants.IS_APP_LOCK_KEY, type: Bool.self) ?? false
+    }
     
     var body: some Scene {
         WindowGroup {
-            DashboardView()
-                .environmentObject(router)
+            if isAppLockEnabled {
+                let biometricsRepo = BiometricsRepositoryImpl(context: LAContext())
+                let viewModel = AuthenticationViewModel(biometricsRepo: biometricsRepo)
+                AuthenticationView(viewModel: viewModel)
+                    .environmentObject(router)
+            } else {
+                DashboardView()
+                    .environmentObject(router)
+            }
         }
     }
 }
