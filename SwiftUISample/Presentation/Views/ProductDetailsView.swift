@@ -16,26 +16,13 @@ struct ProductDetailsView: View {
     }
     
     var body: some View {
-        VStack(spacing: 16) {
-            // Top Image covering top three edges
-            ZStack {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.2)) // Placeholder background color
-                    .frame(height: UIScreen.main.bounds.width) // Makes it square
-                    .edgesIgnoringSafeArea(.top) // Cover top edges
-                
-                AsyncImage(url: URL(string: viewModel.product.imageURL)) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-                        .clipped()
-                } placeholder: {
-                    ProgressView()
-                }
-            }
+        VStack(spacing: 0) {
+            Spacer()
+            Rectangle()
+                .fill(Color.gray.opacity(0.2)) // Placeholder background color
+                .frame(height: UIScreen.main.bounds.width) // Makes it square
+                .edgesIgnoringSafeArea(.top) // Cover top edges
             
-            // Product Details
             VStack(alignment: .leading, spacing: 8) {
                 Text(viewModel.product.name)
                     .font(.title)
@@ -80,10 +67,15 @@ struct ProductDetailsView: View {
             Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            // Navigation Bar buttons
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavIcons()
+            }
+        }
     }
 }
 
-// Preview
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         return NavigationView {

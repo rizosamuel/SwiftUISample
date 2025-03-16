@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeaturedProductsView: View {
     
+    @EnvironmentObject private var router: RouterImpl
     @StateObject private var viewModel: FeaturedProductsViewModel
     
     init(viewModel: FeaturedProductsViewModel) {
@@ -25,6 +26,9 @@ struct FeaturedProductsView: View {
             LazyVGrid(columns: columns, spacing: 2) {
                 ForEach(viewModel.featuredProducts) { product in
                     ProductCardView(product: product)
+                        .onTapGesture {
+                            router.navigate(to: .product(product), switchTab: false)
+                        }
                 }
             }
         }
