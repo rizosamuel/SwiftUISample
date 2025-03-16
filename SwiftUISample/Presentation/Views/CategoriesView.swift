@@ -46,7 +46,7 @@ struct CategoriesView: View {
                     ForEach(viewModel.categories.prefix(5), id: \.self) { category in
                         categoryCard(category)
                             .onTapGesture {
-                                // router.navigate(to: .category(category), switchTab: false)
+                                router.navigate(to: .category(category), switchTab: false)
                             }
                     }
                 }
@@ -57,7 +57,7 @@ struct CategoriesView: View {
     private var allCategoriesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader(title: "All Categories")
-
+            
             let rows = [GridItem(.flexible()), GridItem(.flexible())] // Two rows
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -65,7 +65,7 @@ struct CategoriesView: View {
                     ForEach(viewModel.categories, id: \.self) { category in
                         categoryCardSquare(category)
                             .onTapGesture {
-                                // router.navigate(to: .category(category), switchTab: false)
+                                router.navigate(to: .category(category), switchTab: false)
                             }
                     }
                 }
@@ -102,8 +102,7 @@ struct CategoriesView: View {
                             .font(.subheadline)
                         
                         Button(action: {
-                            // Navigate to deals section
-                            router.navigate(to: .categories, switchTab: true)
+                            // router.navigate(to: .categories, switchTab: true)
                         }) {
                             Text("Shop Now")
                                 .font(.caption)

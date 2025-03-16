@@ -33,6 +33,12 @@ extension View {
             case .featuredProducts:
                 let viewModel = FeaturedProductsViewModel()
                 FeaturedProductsView(viewModel: viewModel)
+            case .category(let category):
+                let viewModel = CategoryDetailsViewModel(category: category)
+                CategoryDetailsView(viewModel: viewModel)
+            case .product(let product):
+                let viewModel = ProductDetailsViewModel(product: product)
+                ProductDetailsView(viewModel: viewModel)
             }
         }
     }

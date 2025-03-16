@@ -16,7 +16,8 @@ enum Tab: Int, CaseIterable {
     }
 }
 
-enum Route: Int, Hashable {
+enum Route: Hashable {
+    
     case home
     case categories
     case myOrders
@@ -27,6 +28,8 @@ enum Route: Int, Hashable {
     case settings
     case chat
     case featuredProducts
+    case category(Category)
+    case product(Product)
     
     var toTab: Tab? {
         switch self {
@@ -65,6 +68,10 @@ enum Route: Int, Hashable {
             hasher.combine("chat")
         case .featuredProducts:
             hasher.combine("featured products")
+        case .category(let category):
+            hasher.combine(category.id)
+        case .product(let product):
+            hasher.combine(product.id)
         }
     }
     
@@ -81,6 +88,10 @@ enum Route: Int, Hashable {
             (.chat, .chat),
             (.featuredProducts, .featuredProducts):
             return true
+        case (.category(let lhs), .category(let rhs)):
+            return lhs.id == rhs.id
+        case (.product(let lhs), .product(let rhs)):
+            return lhs.id == rhs.id
         default:
             return false
         }

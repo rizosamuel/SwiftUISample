@@ -91,8 +91,7 @@ struct HomeView: View {
                     ForEach(viewModel.featuredProducts) { product in
                         productCard(product)
                             .onTapGesture {
-                                router.navigate(to: .chat)
-                                // router.navigate(to: .productDetail(product: product), switchTab: false)
+                                router.navigate(to: .product(product), switchTab: false)
                             }
                     }
                 }
@@ -112,7 +111,7 @@ struct HomeView: View {
                     ForEach(viewModel.categories) { category in
                         categoryCard(category)
                             .onTapGesture {
-                                // router.navigate(to: .category(category), switchTab: false)
+                                router.navigate(to: .category(category), switchTab: false)
                             }
                     }
                 }
@@ -131,7 +130,7 @@ struct HomeView: View {
                     ForEach(viewModel.featuredProducts.prefix(2)) { product in
                         productCard(product)
                             .onTapGesture {
-                                // router.navigate(to: .productDetail(product: product), switchTab: false)
+                                router.navigate(to: .product(product), switchTab: false)
                             }
                     }
                 }
@@ -164,8 +163,7 @@ struct HomeView: View {
                         Button(action: {
                             // Navigate to electronics category
                             if let electronicsCategory = viewModel.categories.first(where: { $0.name == "Electronics" }) {
-                                print(electronicsCategory)
-                                // router.navigate(to: .category(electronicsCategory), switchTab: true)
+                                router.navigate(to: .category(electronicsCategory), switchTab: true)
                             }
                         }) {
                             Text("Shop Now")
@@ -200,7 +198,7 @@ struct HomeView: View {
                 ForEach(viewModel.featuredProducts) { product in
                     smallProductCard(product)
                         .onTapGesture {
-                            // router.navigate(to: .productDetail(product: product), switchTab: false)
+                            router.navigate(to: .product(product), switchTab: false)
                         }
                 }
             }

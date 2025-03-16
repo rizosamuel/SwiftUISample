@@ -25,7 +25,7 @@ class HomeViewModel: ObservableObject {
                 description: "Premium noise-cancelling headphones with 30-hour battery life",
                 price: 249.99,
                 imageURL: "headphones",
-                category: "Electronics",
+                category: Category(id: "1", name: "Electronics", imageURL: "electronics"),
                 rating: 4.8,
                 reviewCount: 423
             ),
@@ -35,7 +35,7 @@ class HomeViewModel: ObservableObject {
                 description: "Fitness and health tracking with heart rate monitor and GPS",
                 price: 199.99,
                 imageURL: "smartwatch",
-                category: "Wearables",
+                category: Category(id: "1", name: "Electronics", imageURL: "electronics"),
                 rating: 4.6,
                 reviewCount: 287
             ),
@@ -45,7 +45,7 @@ class HomeViewModel: ObservableObject {
                 description: "Waterproof Bluetooth speaker with 360° sound",
                 price: 129.99,
                 imageURL: "speaker",
-                category: "Audio",
+                category: Category(id: "1", name: "Electronics", imageURL: "electronics"),
                 rating: 4.7,
                 reviewCount: 156
             )
