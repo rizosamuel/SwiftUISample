@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LocalAuthentication
 
 struct SettingsView: View {
     
@@ -53,7 +52,7 @@ struct SettingsView: View {
 }
 
 #Preview {
-    let biometricsRepo = BiometricsRepositoryImpl(context: LAContext())
+    let biometricsRepo = BiometricsRepositoryImpl()
     let userDefaultsRepo = UserDefaultsRepositoryImpl()
     SettingsView(viewModel: SettingsViewModel(biometricsRepo: biometricsRepo, userDefaultsRepo: userDefaultsRepo))
 }

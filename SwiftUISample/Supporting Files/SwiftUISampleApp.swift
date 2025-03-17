@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LocalAuthentication
 
 @main
 struct SwiftUISampleApp: App {
@@ -21,7 +20,7 @@ struct SwiftUISampleApp: App {
     var body: some Scene {
         WindowGroup {
             if isAppLockEnabled {
-                let biometricsRepo = BiometricsRepositoryImpl(context: LAContext())
+                let biometricsRepo = BiometricsRepositoryImpl()
                 let viewModel = AuthenticationViewModel(biometricsRepo: biometricsRepo)
                 AuthenticationView(viewModel: viewModel)
                     .environmentObject(router)

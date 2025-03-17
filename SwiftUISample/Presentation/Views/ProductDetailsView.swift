@@ -16,63 +16,66 @@ struct ProductDetailsView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            Rectangle()
-                .fill(Color.gray.opacity(0.2)) // Placeholder background color
-                .frame(height: UIScreen.main.bounds.width) // Makes it square
-                .edgesIgnoringSafeArea(.top) // Cover top edges
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text(viewModel.product.name)
-                    .font(.title)
-                    .fontWeight(.bold)
+        NavigationView {
+            VStack(spacing: 0) {
+                Spacer()
+                Rectangle()
+                    .fill(Color.gray.opacity(0.2)) // Placeholder background color
+                    .frame(height: UIScreen.main.bounds.width) // Makes it square
+                    .edgesIgnoringSafeArea(.top) // Cover top edges
                 
-                Text(viewModel.product.category.name)
-                    .font(.headline)
-                    .foregroundColor(.gray)
-                
-                HStack {
-                    Text("⭐ \(String(format: "%.1f", viewModel.product.rating)) (\(viewModel.product.reviewCount) reviews)")
-                        .font(.subheadline)
-                        .foregroundColor(.orange)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(viewModel.product.name)
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    Text(viewModel.product.category.name)
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    
+                    HStack {
+                        Text("⭐ \(String(format: "%.1f", viewModel.product.rating)) (\(viewModel.product.reviewCount) reviews)")
+                            .font(.subheadline)
+                            .foregroundColor(.orange)
+                        
+                        Spacer()
+                        
+                        Text("₹\(String(format: "%.2f", viewModel.product.price))")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                    }
+                    
+                    Text(viewModel.product.description)
+                        .font(.body)
+                        .foregroundColor(.secondary)
                     
                     Spacer()
                     
-                    Text("₹\(String(format: "%.2f", viewModel.product.price))")
-                        .font(.title2)
-                        .fontWeight(.bold)
+                    // Add to Cart Button
+                    Button(action: {
+                        print("Added to cart")
+                    }) {
+                        Text("Add to Cart")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
                 }
-                
-                Text(viewModel.product.description)
-                    .font(.body)
-                    .foregroundColor(.secondary)
+                .padding()
                 
                 Spacer()
-                
-                // Add to Cart Button
-                Button(action: {
-                    print("Added to cart")
-                }) {
-                    Text("Add to Cart")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                // Navigation Bar buttons
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavIcons()
                 }
             }
-            .padding()
-            
-            Spacer()
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            // Navigation Bar buttons
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavIcons()
-            }
-        }
+        .accessibilityIdentifier("ProductDetailsView")
     }
 }
 

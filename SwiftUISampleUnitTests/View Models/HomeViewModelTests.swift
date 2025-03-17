@@ -72,7 +72,7 @@ class HomeViewModelTests: XCTestCase {
             description: "Premium noise-cancelling headphones",
             price: 249.99,
             imageURL: "headphones",
-            category: "Electronics",
+            category: Category(id: "1", name: "Electronic", imageURL: ""),
             rating: 4.8,
             reviewCount: 423
         )
@@ -85,19 +85,64 @@ class HomeViewModelTests: XCTestCase {
     }
     
     func testProductEquality() {
-        let product1 = Product(id: "1", name: "Item A", description: "Desc", price: 10.0, imageURL: "image", category: "Cat", rating: 4.5, reviewCount: 100)
-        let product2 = Product(id: "1", name: "Item A", description: "Desc", price: 10.0, imageURL: "image", category: "Cat", rating: 4.5, reviewCount: 100)
-        let product3 = Product(id: "2", name: "Item B", description: "Desc", price: 15.0, imageURL: "image", category: "Cat", rating: 4.0, reviewCount: 50)
+        let product1 = Product(
+            id: "1",
+            name: "Item A",
+            description: "Desc",
+            price: 10.0,
+            imageURL: "image",
+            category: Category(id: "1", name: "Cate", imageURL: ""),
+            rating: 4.5,
+            reviewCount: 100
+        )
+        let product2 = Product(
+            id: "1",
+            name: "Item A",
+            description: "Desc",
+            price: 10.0,
+            imageURL: "image",
+            category: Category(id: "1", name: "Cate", imageURL: ""),
+            rating: 4.5,
+            reviewCount: 100
+        )
+        let product3 = Product(
+            id: "2",
+            name: "Item B",
+            description: "Desc",
+            price: 15.0,
+            imageURL: "image",
+            category: Category(id: "1", name: "Cate", imageURL: ""),
+            rating: 4.0,
+            reviewCount: 50
+        )
         
         XCTAssertEqual(product1, product2) // Same id
         XCTAssertNotEqual(product1, product3) // Different id
     }
     
     func testProductHashing() {
-        let product1 = Product(id: "1", name: "Item A", description: "Desc", price: 10.0, imageURL: "image", category: "Cat", rating: 4.5, reviewCount: 100)
-        let product2 = Product(id: "1", name: "Item A", description: "Desc", price: 10.0, imageURL: "image", category: "Cat", rating: 4.5, reviewCount: 100)
+        let product1 = Product(
+            id: "1",
+            name: "Item A",
+            description: "Desc",
+            price: 10.0,
+            imageURL: "image",
+            category: Category(id: "1", name: "Cate", imageURL: ""),
+            rating: 4.5,
+            reviewCount: 100
+        )
+        let product2 = Product(
+            id: "1",
+            name: "Item A",
+            description: "Desc",
+            price: 10.0,
+            imageURL: "image",
+            category: Category(id: "1", name: "Cate", imageURL: ""),
+            rating: 4.5,
+            reviewCount: 100
+        )
         let productSet: Set<Product> = [product1, product2]
         
-        XCTAssertEqual(productSet.count, 1) // Since product1 and product2 have the same id, only one should be stored in the set
+        XCTAssertEqual(productSet.count, 1, "Since product1 and product2 have the same id, only one should be stored in the set")
     }
 }

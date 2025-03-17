@@ -107,11 +107,53 @@ final class SwiftUISampleUITests: XCTestCase {
         let accountView = app.otherElements["AccountView"]
         XCTAssertTrue(accountView.exists, "Should navigate to AccountView")
         
-        let app = XCUIApplication()
         app.tabBars["Tab Bar"].buttons["Account"].tap()
         app.collectionViews.buttons["Settings"].tap()
         
         let settingsView = app.otherElements["SettingsView"]
         XCTAssertTrue(settingsView.exists, "Should navigate to SettingsView")
+    }
+    
+    func testNavigationToCategoryDetails() {
+        let homeView = app.scrollViews["HomeView"]
+        XCTAssertTrue(homeView.exists, "HomeView should be visible on launch")
+        
+        homeView.otherElements.scrollViews.otherElements.staticTexts["electronics"].tap()
+        
+        let categoryDetailsView = app.scrollViews["CategoryDetailsView"]
+        XCTAssertTrue(categoryDetailsView.exists, "Should navigate to CategoryDetailsView")
+    }
+    
+    func testNavigationToFeaturedProducts() {
+        let homeView = app.scrollViews["HomeView"]
+        XCTAssertTrue(homeView.exists, "HomeView should be visible on launch")
+        
+        homeView.otherElements.containing(.textField, identifier:"Search...").children(matching: .staticText).matching(identifier: "See All").element(boundBy: 0).tap()
+        
+        let featuredProductsView = app.scrollViews["FeaturedProductsView"]
+        XCTAssertTrue(featuredProductsView.exists, "Should navigate to FeaturedProductsView")
+    }
+    
+    func testNavigationToProductDetails() {
+        let homeView = app.scrollViews["HomeView"]
+        XCTAssertTrue(homeView.exists, "HomeView should be visible on launch")
+        
+        let headphonesStaticText = homeView.otherElements.scrollViews.otherElements.containing(.staticText, identifier:"speaker").staticTexts["headphones"]
+        headphonesStaticText.tap()
+        
+        let productDetailsView = app.otherElements["ProductDetailsView"]
+        XCTAssertTrue(productDetailsView.exists, "Should navigate to ProductDetailsView")
+    }
+    
+    func testNavigationToChat() {
+        let accountTab = app.buttons["Account"]
+        XCTAssertTrue(accountTab.exists, "Account tab should exist")
+        accountTab.tap()
+
+        app/*@START_MENU_TOKEN@*/.collectionViews.buttons["Settings"]/*[[".otherElements[\"AccountView\"].collectionViews",".cells.buttons[\"Settings\"]",".buttons[\"Settings\"]",".collectionViews"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
+        app/*@START_MENU_TOKEN@*/.collectionViews.buttons["Support"]/*[[".otherElements[\"SettingsView\"].collectionViews",".cells.buttons[\"Support\"]",".buttons[\"Support\"]",".collectionViews"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
+        
+        let chatView = app.otherElements["ChatView"]
+        XCTAssertTrue(chatView.exists, "Should navigate to ChatView")
     }
 }

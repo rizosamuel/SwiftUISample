@@ -12,7 +12,6 @@ struct HomeView: View {
     @EnvironmentObject private var router: RouterImpl
     @StateObject private var viewModel: HomeViewModel
     @State private var searchText = ""
-    @State private var isChatViewActive = false
     
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -82,7 +81,6 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader(title: "Featured Products", actionLabel: "See All")
                 .onTapGesture {
-                    // Navigate to all featured products
                     router.navigate(to: .featuredProducts, switchTab: false)
                 }
             
@@ -122,6 +120,9 @@ struct HomeView: View {
     private var newArrivalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader(title: "New Arrivals", actionLabel: "View More")
+                .onTapGesture {
+                    router.navigate(to: .featuredProducts, switchTab: false)
+                }
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
@@ -193,6 +194,9 @@ struct HomeView: View {
     private var recommendedSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader(title: "Recommended for You", actionLabel: "View All")
+                .onTapGesture {
+                    router.navigate(to: .featuredProducts, switchTab: false)
+                }
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
                 ForEach(viewModel.featuredProducts) { product in

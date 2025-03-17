@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LocalAuthentication
 
 // MARK: - Navigation Destination Extension
 extension View {
@@ -22,7 +21,7 @@ extension View {
             case .notifications:
                 NotificationsView()
             case .settings:
-                let biometricsRepo = BiometricsRepositoryImpl(context: LAContext())
+                let biometricsRepo = BiometricsRepositoryImpl()
                 let userDefaultsRepo = UserDefaultsRepositoryImpl()
                 let viewModel = SettingsViewModel(biometricsRepo: biometricsRepo, userDefaultsRepo: userDefaultsRepo)
                 SettingsView(viewModel: viewModel)

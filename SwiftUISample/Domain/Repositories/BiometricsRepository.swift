@@ -25,7 +25,7 @@ class BiometricsRepositoryImpl: BiometricsRepository, FileIdentifier {
     
     var biometryErrorReason: String = ""
     
-    init(context: LAContext) {
+    init(context: LAContext = LAContext()) {
         self.context = context
     }
     
@@ -71,6 +71,7 @@ class BiometricsRepositoryImpl: BiometricsRepository, FileIdentifier {
     }
     
     func authenticate(completion: @escaping (Bool, String) -> Void) {
+        print("\n[\(fileName)] PERFORMING BIOMETRIC AUTHENTICATION...")
         contextQueue.async { [weak self] in
             let reason = "Authenticate to access your data"
             self?.context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
