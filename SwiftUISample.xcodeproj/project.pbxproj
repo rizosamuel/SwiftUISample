@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D450039F2D8941D2007BE3EB /* SwiftUISampleTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = D450039E2D8941D2007BE3EB /* SwiftUISampleTestPlan.xctestplan */; };
+		D45003BB2D89862C007BE3EB /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = D45003BA2D89862C007BE3EB /* Apollo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D45003B02D898534007BE3EB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C141E5A32D840034008132D6 /* SwiftUISampleSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUISampleSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D450039E2D8941D2007BE3EB /* SwiftUISampleTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftUISampleTestPlan.xctestplan; sourceTree = "<group>"; };
@@ -41,6 +55,26 @@
 		D4EEED1A2D829CF000D87DB8 /* SwiftUISampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUISampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4EEED292D82B10100D87DB8 /* SwiftUISampleUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUISampleUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D45003C52D89A59B007BE3EB /* Exceptions for "SwiftUISample" folder in "SwiftUISample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Data/GraphQL/Queries.graphql,
+			);
+			target = D4C6B4202D8002210092D063 /* SwiftUISample */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		D45003C62D89A59B007BE3EB /* Exceptions for "SwiftUISample" folder in "Compile Sources" phase from "SwiftUISample" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = D4C6B41D2D8002210092D063 /* Sources */;
+			membershipExceptions = (
+				Data/GraphQL/Queries.graphql,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C141E5A42D840034008132D6 /* SwiftUISampleSwiftUnitTests */ = {
@@ -50,6 +84,10 @@
 		};
 		D4C6B4232D8002210092D063 /* SwiftUISample */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D45003C52D89A59B007BE3EB /* Exceptions for "SwiftUISample" folder in "SwiftUISample" target */,
+				D45003C62D89A59B007BE3EB /* Exceptions for "SwiftUISample" folder in "Compile Sources" phase from "SwiftUISample" target */,
+			);
 			path = SwiftUISample;
 			sourceTree = "<group>";
 		};
@@ -77,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45003BB2D89862C007BE3EB /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +136,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D45003A82D8984BC007BE3EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D4C6B4182D8002210092D063 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +151,7 @@
 				D4EEED1B2D829CF000D87DB8 /* SwiftUISampleUITests */,
 				D4EEED2A2D82B10200D87DB8 /* SwiftUISampleUnitTests */,
 				C141E5A42D840034008132D6 /* SwiftUISampleSwiftUnitTests */,
+				D45003A82D8984BC007BE3EB /* Frameworks */,
 				D4C6B4222D8002210092D063 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +200,7 @@
 				D4C6B41D2D8002210092D063 /* Sources */,
 				D4C6B41E2D8002210092D063 /* Frameworks */,
 				D4C6B41F2D8002210092D063 /* Resources */,
+				D45003B02D898534007BE3EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,6 +211,7 @@
 			);
 			name = SwiftUISample;
 			packageProductDependencies = (
+				D45003BA2D89862C007BE3EB /* Apollo */,
 			);
 			productName = SwiftUISample;
 			productReference = D4C6B4212D8002210092D063 /* SwiftUISample.app */;
@@ -251,6 +300,9 @@
 			);
 			mainGroup = D4C6B4182D8002210092D063;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D45003AB2D89851A007BE3EB /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D4C6B4222D8002210092D063 /* Products */;
 			projectDirPath = "";
@@ -687,6 +739,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D45003AB2D89851A007BE3EB /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.18.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D45003BA2D89862C007BE3EB /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D45003AB2D89851A007BE3EB /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D4C6B4192D8002210092D063 /* Project object */;
 }
