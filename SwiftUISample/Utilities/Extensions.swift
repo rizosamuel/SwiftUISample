@@ -26,7 +26,7 @@ extension View {
                 let viewModel = SettingsViewModel(biometricsRepo: biometricsRepo, userDefaultsRepo: userDefaultsRepo)
                 SettingsView(viewModel: viewModel)
             case .chat:
-                let chatRepo = MultipeerManager()
+                let chatRepo = BonjourChatManager()
                 let viewModel = ChatViewModel(chatRepository: chatRepo)
                 ChatView(viewModel: viewModel)
             case .featuredProducts:

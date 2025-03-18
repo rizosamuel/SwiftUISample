@@ -146,6 +146,6 @@ class RouterImpl: Router {
         navigationHistory[.myOrders] = []
         accountPath.removeLast(accountPath.count)
         navigationHistory[.account] = []
-        selectedTab = .home
+        selectedTabIndex = 0
     }
 }

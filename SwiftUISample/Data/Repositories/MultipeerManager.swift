@@ -5,36 +5,39 @@
 //  Created by Rijo Samuel on 14/03/25.
 //
 
-import Foundation
 import MultipeerConnectivity
 
 class MultipeerManager: NSObject, ObservableObject, ChatRepository {
     
-    private let serviceType = "chat-service"
-
-    private var peerID: MCPeerID
-    private var session: MCSession
-    private var advertiser: MCNearbyServiceAdvertiser?
-    private var browser: MCNearbyServiceBrowser?
+    private let serviceType: String
+    private let peerID: MCPeerID
+    
+    let mcSession: MCSession
+    let advertiser: MCNearbyServiceAdvertiser
+    let browser: MCNearbyServiceBrowser
 
     // protocol conformance
     @Published var messages: [Message] = []
     @Published var isConnected: Bool = false
 
-    override init() {
-        self.peerID = MCPeerID(displayName: UIDevice.current.name)
-        self.session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
-
-        super.init()
-        self.session.delegate = self
-
+    init(
+        serviceType: String = "chat-service",
+        peerID: MCPeerID = MCPeerID(displayName: UIDevice.current.name)
+    ) {
+        self.serviceType = serviceType
+        self.peerID = peerID
+        self.mcSession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
         self.advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
-        self.advertiser?.delegate = self
-        self.advertiser?.startAdvertisingPeer()
-
         self.browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
-        self.browser?.delegate = self
-        self.browser?.startBrowsingForPeers()
+        super.init()
+        
+        self.mcSession.delegate = self
+        
+        self.advertiser.delegate = self
+        self.advertiser.startAdvertisingPeer()
+
+        self.browser.delegate = self
+        self.browser.startBrowsingForPeers()
     }
 
     func sendMessage(_ text: String) {
@@ -45,7 +48,7 @@ class MultipeerManager: NSObject, ObservableObject, ChatRepository {
         }
 
         if let data = try? JSONEncoder().encode(message) {
-            try? session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            try? mcSession.send(data, toPeers: mcSession.connectedPeers, with: .reliable)
         }
     }
 
@@ -80,14 +83,14 @@ extension MultipeerManager: MCSessionDelegate {
 // MARK: - MCNearbyServiceAdvertiserDelegate
 extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        invitationHandler(true, session)
+        invitationHandler(true, mcSession)
     }
 }
 
 // MARK: - MCNearbyServiceBrowserDelegate
 extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
-        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, to: mcSession, withContext: nil, timeout: 10)
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {}

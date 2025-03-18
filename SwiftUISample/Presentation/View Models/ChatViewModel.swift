@@ -18,7 +18,7 @@ class ChatViewModel: ObservableObject {
         self.chatRepository = chatRepository
 
         // Observe the repository’s messages using Combine
-        if let repo = chatRepository as? MultipeerManager {
+        if let repo = chatRepository as? BonjourChatManager {
             repo.$messages
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] updatedMessages in

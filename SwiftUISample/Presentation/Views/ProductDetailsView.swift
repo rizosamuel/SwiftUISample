@@ -16,8 +16,8 @@ struct ProductDetailsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
+        ScrollView {
+            VStack {
                 Spacer()
                 Rectangle()
                     .fill(Color.gray.opacity(0.2)) // Placeholder background color

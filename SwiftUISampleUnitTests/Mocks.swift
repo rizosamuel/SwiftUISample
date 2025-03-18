@@ -6,6 +6,7 @@
 //
 
 import LocalAuthentication
+import MultipeerConnectivity
 @testable import SwiftUISample
 
 class MockLAContext: LAContext {
@@ -52,4 +53,26 @@ class MockUserDefaultsRepository: UserDefaultsRepositoryImpl {
     override func save<T>(_ value: T, forKey key: String) where T: Encodable {
         storage[key] = value
     }
+}
+
+class MockMCSession: MCSession {
+    private var _connectedPeers: [MCPeerID] = []
+    
+    override var connectedPeers: [MCPeerID] {
+        return _connectedPeers
+    }
+    
+    func setConnectedPeers(_ peers: [MCPeerID]) {
+        _connectedPeers = peers
+    }
+}
+
+class MockAdvertiser: MCNearbyServiceAdvertiser {
+    override func startAdvertisingPeer() { /* No-op */ }
+    override func stopAdvertisingPeer() { /* No-op */ }
+}
+
+class MockBrowser: MCNearbyServiceBrowser {
+    override func startBrowsingForPeers() { /* No-op */ }
+    override func stopBrowsingForPeers() { /* No-op */ }
 }

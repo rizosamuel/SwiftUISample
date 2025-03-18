@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "4C910558-0FC4-4396-94B4-D3766DC0119F",
+      "id" : "808449B5-8A02-4D23-8AC0-B1F4F2294DFB",
       "name" : "Configuration 1",
       "options" : {
 
@@ -15,6 +15,13 @@
     {
       "target" : {
         "containerPath" : "container:SwiftUISample.xcodeproj",
+        "identifier" : "D4EEED282D82B10100D87DB8",
+        "name" : "SwiftUISampleUnitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:SwiftUISample.xcodeproj",
         "identifier" : "C141E5A22D840034008132D6",
         "name" : "SwiftUISampleSwiftUnitTests"
       }
@@ -24,13 +31,6 @@
         "containerPath" : "container:SwiftUISample.xcodeproj",
         "identifier" : "D4EEED192D829CF000D87DB8",
         "name" : "SwiftUISampleUITests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:SwiftUISample.xcodeproj",
-        "identifier" : "D4EEED282D82B10100D87DB8",
-        "name" : "SwiftUISampleUnitTests"
       }
     }
   ],

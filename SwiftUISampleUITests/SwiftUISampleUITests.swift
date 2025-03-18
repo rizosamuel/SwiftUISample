@@ -141,7 +141,7 @@ final class SwiftUISampleUITests: XCTestCase {
         let headphonesStaticText = homeView.otherElements.scrollViews.otherElements.containing(.staticText, identifier:"speaker").staticTexts["headphones"]
         headphonesStaticText.tap()
         
-        let productDetailsView = app.otherElements["ProductDetailsView"]
+        let productDetailsView = app.scrollViews["ProductDetailsView"]
         XCTAssertTrue(productDetailsView.exists, "Should navigate to ProductDetailsView")
     }
     
