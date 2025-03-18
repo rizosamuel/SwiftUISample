@@ -152,6 +152,8 @@ final class SwiftUISampleUITests: XCTestCase {
 
         app/*@START_MENU_TOKEN@*/.collectionViews.buttons["Settings"]/*[[".otherElements[\"AccountView\"].collectionViews",".cells.buttons[\"Settings\"]",".buttons[\"Settings\"]",".collectionViews"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
         app/*@START_MENU_TOKEN@*/.collectionViews.buttons["Support"]/*[[".otherElements[\"SettingsView\"].collectionViews",".cells.buttons[\"Support\"]",".buttons[\"Support\"]",".collectionViews"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["Type a message..."]/*[[".otherElements[\"ChatView\"].textFields[\"Type a message...\"]",".textFields[\"Type a message...\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["paperplane.fill"]/*[[".otherElements[\"ChatView\"]",".buttons[\"Send\"]",".buttons[\"paperplane.fill\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
         
         let chatView = app.otherElements["ChatView"]
         XCTAssertTrue(chatView.exists, "Should navigate to ChatView")

@@ -57,6 +57,7 @@ struct ChatView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Button(action: {
+                        guard !messageText.isEmpty else { return }
                         viewModel.sendMessage(messageText)
                         messageText = ""
                     }) {
@@ -70,61 +71,5 @@ struct ChatView: View {
             .navigationTitle("Chat")
         }
         .accessibilityIdentifier("ChatView")
-    }
-    
-    struct MessageView: View {
-        let message: Message
-
-        var body: some View {
-            HStack {
-                if message.isReceived {
-                    TextBubble(message.text, background: Color.gray.opacity(0.2))
-                    Spacer()
-                } else {
-                    Spacer()
-                    TextBubble(message.text, background: Color.blue, foreground: .white)
-                }
-            }
-        }
-    }
-
-    struct TextBubble: View {
-        let text: String
-        let background: Color
-        let foreground: Color?
-
-        init(_ text: String, background: Color, foreground: Color? = nil) {
-            self.text = text
-            self.background = background
-            self.foreground = foreground
-        }
-
-        var body: some View {
-            Text(text)
-                .padding()
-                .background(background)
-                .foregroundColor(foreground ?? .primary)
-                .cornerRadius(12)
-                .frame(maxWidth: 250, alignment: .leading)
-        }
-    }
-
-    struct MessageInputView: View {
-        @Binding var messageText: String
-        let sendMessage: () -> Void
-
-        var body: some View {
-            HStack {
-                TextField("Type a message...", text: $messageText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                Button(action: sendMessage) {
-                    Image(systemName: "paperplane.fill")
-                        .foregroundColor(.blue)
-                        .padding()
-                }
-            }
-            .padding()
-        }
     }
 }

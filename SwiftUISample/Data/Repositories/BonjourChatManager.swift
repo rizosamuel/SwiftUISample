@@ -62,6 +62,20 @@ class BonjourChatManager: NSObject, ObservableObject, ChatRepository {
             _ = data.withUnsafeBytes { outputStream.write($0.bindMemory(to: UInt8.self).baseAddress!, maxLength: data.count) }
         }
     }
+    
+    private func receiveMessage(for receivedData: Data) {
+        do {
+            let receivedMessage = try JSONDecoder().decode(Message.self, from: receivedData)
+            guard receivedMessage.senderId != serviceName else { return }
+            let message = Message(senderId: receivedMessage.senderId, text: receivedMessage.text, isReceived: true)
+            
+            DispatchQueue.main.async {
+                self.messages.append(message)
+            }
+        } catch {
+            print("Error decoding message: \(error.localizedDescription)")
+        }
+    }
 }
 
 // MARK: - NetServiceDelegate
@@ -120,24 +134,14 @@ extension BonjourChatManager: StreamDelegate {
         switch eventCode {
         case .hasBytesAvailable:
             guard let inputStream = aStream as? InputStream else { return }
-                
+            
             var buffer = [UInt8](repeating: 0, count: 1024)
             let bytesRead = inputStream.read(&buffer, maxLength: buffer.count)
             
             guard bytesRead > 0 else { return }
             
-            let receivedData = Data(buffer.prefix(bytesRead)) // Convert to Data
-            
-            do {
-                var receivedMessage = try JSONDecoder().decode(Message.self, from: receivedData)
-                receivedMessage.isReceived = true
-                
-                DispatchQueue.main.async {
-                    self.messages.append(receivedMessage)
-                }
-            } catch {
-                print("Error decoding message: \(error.localizedDescription)")
-            }
+            let receivedData = Data(buffer.prefix(bytesRead))
+            receiveMessage(for: receivedData)
         default:
             break
         }

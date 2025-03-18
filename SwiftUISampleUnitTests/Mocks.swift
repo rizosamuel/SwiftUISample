@@ -76,3 +76,22 @@ class MockBrowser: MCNearbyServiceBrowser {
     override func startBrowsingForPeers() { /* No-op */ }
     override func stopBrowsingForPeers() { /* No-op */ }
 }
+
+class MockInputStream: InputStream {
+    private let data: Data
+    private var offset = 0
+    
+    override init(data: Data) {
+        self.data = data
+        super.init(data: data)
+    }
+    
+    override func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength: Int) -> Int {
+        let bytesToCopy = min(maxLength, data.count - offset)
+        guard bytesToCopy > 0 else { return 0 }
+        
+        data.copyBytes(to: buffer, count: bytesToCopy)
+        offset += bytesToCopy
+        return bytesToCopy
+    }
+}

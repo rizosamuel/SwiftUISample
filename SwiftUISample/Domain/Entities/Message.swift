@@ -12,7 +12,7 @@ struct Message: Identifiable, Codable {
     let id: UUID
     let senderId: String
     let text: String
-    var isReceived: Bool
+    let isReceived: Bool
 
     init(id: UUID = UUID(), senderId: String, text: String, isReceived: Bool) {
         self.id = id
