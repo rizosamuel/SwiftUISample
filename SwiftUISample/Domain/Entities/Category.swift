@@ -5,7 +5,7 @@
 //  Created by Rijo Samuel on 11/03/25.
 //
 
-struct Category: Identifiable, Hashable {
+struct Category: Identifiable, Hashable, Decodable {
     
     let id: String
     let name: String

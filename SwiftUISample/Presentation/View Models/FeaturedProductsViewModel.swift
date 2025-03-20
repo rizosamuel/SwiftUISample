@@ -9,10 +9,24 @@ import Foundation
 
 class FeaturedProductsViewModel: ObservableObject {
     
+    private let useCase: FeaturedProductsUseCase
     @Published var featuredProducts: [Product] = []
+    @Published var errorMessage: String = ""
     
-    init() {
-        loadFeaturedProducts()
+    init(useCase: FeaturedProductsUseCase) {
+        self.useCase = useCase
+        // loadFeaturedProducts()
+    }
+    
+    func getFeaturedProducts() {
+        useCase.getFeaturedProducts { [weak self] result in
+            switch result {
+            case .success(let products):
+                self?.featuredProducts = products
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+            }
+        }
     }
     
     private func loadFeaturedProducts() {

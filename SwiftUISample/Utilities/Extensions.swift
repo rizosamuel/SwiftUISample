@@ -30,7 +30,8 @@ extension View {
                 let viewModel = ChatViewModel(chatRepository: chatRepo)
                 ChatView(viewModel: viewModel)
             case .featuredProducts:
-                let viewModel = FeaturedProductsViewModel()
+                let useCase = FeaturedProductsUseCaseImpl()
+                let viewModel = FeaturedProductsViewModel(useCase: useCase)
                 FeaturedProductsView(viewModel: viewModel)
             case .category(let category):
                 let viewModel = CategoryDetailsViewModel(category: category)
@@ -39,6 +40,18 @@ extension View {
                 let viewModel = ProductDetailsViewModel(product: product)
                 ProductDetailsView(viewModel: viewModel)
             }
+        }
+    }
+}
+
+extension Data {
+    func printJSON() {
+        if let jsonObject = try? JSONSerialization.jsonObject(with: self, options: []),
+           let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
+           let prettyPrintedString = String(data: prettyData, encoding: .utf8) {
+            print(prettyPrintedString)
+        } else {
+            print("Invalid JSON data")
         }
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Rijo Samuel on 11/03/25.
 //
 
-struct Product: Identifiable, Hashable {
+struct Product: Identifiable, Hashable, Decodable {
     
     let id: String
     let name: String

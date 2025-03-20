@@ -32,11 +32,16 @@ struct FeaturedProductsView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.getFeaturedProducts()
+        }
         .navigationTitle("Featured Products")
         .accessibilityIdentifier("FeaturedProductsView")
     }
 }
 
 #Preview {
-    FeaturedProductsView(viewModel: FeaturedProductsViewModel())
+    let useCase = FeaturedProductsUseCaseImpl()
+    let viewModel = FeaturedProductsViewModel(useCase: useCase)
+    FeaturedProductsView(viewModel: viewModel)
 }
