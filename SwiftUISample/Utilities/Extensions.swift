@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - Navigation Destination Extension
 extension View {
+    // Navigation Destination Extension
     func withNavigationDestinations() -> some View {
         self.navigationDestination(for: Route.self) { route in
             switch route {
@@ -42,16 +42,36 @@ extension View {
             }
         }
     }
+    
+    // Modal Destination Extension
+    func withModals(router: RouterImpl) -> some View {
+        self.sheet(item: router.presentedModalBinding) { modal in
+            switch modal {
+            case .addProduct:
+                let useCase = FeaturedProductsUseCaseImpl()
+                let viewModel = AddProductViewModel(useCase: useCase)
+                AddProductView(viewModel: viewModel)
+            case .cart:
+                CartView()
+            }
+        }
+    }
 }
 
 extension Data {
-    func printJSON() {
+    func prettyPrinted() -> String {
         if let jsonObject = try? JSONSerialization.jsonObject(with: self, options: []),
            let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
            let prettyPrintedString = String(data: prettyData, encoding: .utf8) {
-            print(prettyPrintedString)
+            return prettyPrintedString
         } else {
-            print("Invalid JSON data")
+            return "Could not pretty print Invalid JSON data"
         }
+    }
+}
+
+extension String {
+    var localized: String {
+        return String(localized: String.LocalizationValue(self))
     }
 }

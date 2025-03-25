@@ -39,7 +39,7 @@ struct CategoriesView: View {
     
     private var featuredCategoriesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "Featured")
+            sectionHeader(title: "Featured".localized)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
@@ -56,7 +56,7 @@ struct CategoriesView: View {
     
     private var allCategoriesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "All Categories")
+            sectionHeader(title: "All Categories".localized)
             
             let rows = [GridItem(.flexible()), GridItem(.flexible())] // Two rows
             
@@ -76,7 +76,7 @@ struct CategoriesView: View {
     private var specialOffersSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                sectionHeader(title: "Special Offers")
+                sectionHeader(title: "Special Offers".localized)
                 Spacer()
                 Text("See All")
                     .font(.caption)

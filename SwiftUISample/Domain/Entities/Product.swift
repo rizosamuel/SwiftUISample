@@ -5,7 +5,9 @@
 //  Created by Rijo Samuel on 11/03/25.
 //
 
-struct Product: Identifiable, Hashable, Decodable {
+import Foundation
+
+struct Product: Identifiable, Hashable, Codable {
     
     let id: String
     let name: String
@@ -22,5 +24,14 @@ struct Product: Identifiable, Hashable, Decodable {
     
     static func == (lhs: Product, rhs: Product) -> Bool {
         lhs.id == rhs.id
+    }
+    
+    func encode() -> Data? {
+        do {
+            return try JSONEncoder().encode(self)
+        } catch {
+            print("❌ Encoding failed: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

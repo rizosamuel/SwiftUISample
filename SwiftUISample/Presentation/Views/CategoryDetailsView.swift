@@ -40,5 +40,5 @@ struct CategoryDetailsView: View {
 #Preview {
     let category = Category(id: "1", name: "Electronics", imageURL: "electronics")
     let viewModel = CategoryDetailsViewModel(category: category)
-    CategoryDetailsView(viewModel: CategoryDetailsViewModel(category: category))
+    CategoryDetailsView(viewModel: viewModel)
 }

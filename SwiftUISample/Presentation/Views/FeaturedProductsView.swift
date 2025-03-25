@@ -32,6 +32,16 @@ struct FeaturedProductsView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    router.presentModal(.addProduct)
+                } label: {
+                    Image(systemName: "plus")
+                }
+                .accessibilityIdentifier("AddProduct")
+            }
+        }
         .onAppear {
             viewModel.getFeaturedProducts()
         }

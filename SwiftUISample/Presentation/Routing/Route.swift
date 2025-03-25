@@ -6,6 +6,7 @@
 //
 
 enum Tab: Int, CaseIterable {
+    
     case home
     case categories
     case myOrders
@@ -48,30 +49,12 @@ enum Route: Hashable {
     
     func hash(into hasher: inout Hasher) {
         switch self {
-        case .home:
-            hasher.combine("home")
-        case .categories:
-            hasher.combine("categories")
-        case .myOrders:
-            hasher.combine("my orders")
-        case .account:
-            hasher.combine("account")
-        case .cart:
-            hasher.combine("cart")
-        case .wishlist:
-            hasher.combine("wishlist")
-        case .notifications:
-            hasher.combine("notifications")
-        case .settings:
-            hasher.combine("settings")
-        case .chat:
-            hasher.combine("chat")
-        case .featuredProducts:
-            hasher.combine("featured products")
         case .category(let category):
             hasher.combine(category.id)
         case .product(let product):
             hasher.combine(product.id)
+        default:
+            hasher.combine(String(describing: self))
         }
     }
     
@@ -92,6 +75,36 @@ enum Route: Hashable {
             return lhs.id == rhs.id
         case (.product(let lhs), .product(let rhs)):
             return lhs.id == rhs.id
+        default:
+            return false
+        }
+    }
+}
+
+enum Modal: Hashable, Identifiable {
+    
+    case addProduct
+    case cart
+    
+    var id: String {
+        switch self {
+        case .addProduct: return "addProduct"
+        case .cart: return "cart"
+        }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        default:
+            hasher.combine(String(describing: self))
+        }
+    }
+    
+    static func == (lhs: Modal, rhs: Modal) -> Bool {
+        switch (lhs, rhs) {
+        case (.addProduct, .addProduct),
+            (.cart, .cart):
+            return true
         default:
             return false
         }

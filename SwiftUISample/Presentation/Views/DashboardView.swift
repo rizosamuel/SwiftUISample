@@ -62,6 +62,7 @@ struct DashboardView: View {
             }
             .tag(3)
         }
+        .withModals(router: router)
     }
 }
 

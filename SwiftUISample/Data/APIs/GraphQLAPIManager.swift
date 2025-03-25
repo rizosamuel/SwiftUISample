@@ -50,21 +50,23 @@ class GraphQLManager {
 
 extension GraphQLManager: APIService {
     
-    func fetchData<T>(using apiType: APIType, type: T.Type, completion: @escaping (Result<T, any Error>) -> Void) where T : Decodable {
+    func fetchData<T: Decodable>(using apiType: APIType, type: T.Type, completion: @escaping (Result<T, any Error>) -> Void) {
         guard case let .graphql(model) = apiType else {
             completion(.failure(NSError(domain: "Invalid Query", code: -1, userInfo: nil)))
             return
         }
         
+        print(model.query)
         // fetchGraphQLData(query: model.query, completion: completion)
     }
     
-    func fetchData<T>(using apiType: APIType, type: T.Type) async throws -> T where T : Decodable {
+    func fetchData<T: Decodable>(using apiType: APIType, type: T.Type) async throws -> T {
         guard case let .graphql(model) = apiType else {
             throw NSError(domain: "Invalid Query", code: -1, userInfo: nil)
         }
         
         // fetchData(apiType: model.query)
+        print(model.query)
         return 2 as! T
     }
 }

@@ -1,0 +1,201 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "(%lld)" : {
+
+    },
+    "%.1f (%lld)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.1f (%2$lld)"
+          }
+        }
+      }
+    },
+    "%@ Products" : {
+
+    },
+    "⭐ %@ (%lld reviews)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "⭐ %1$@ (%2$lld reviews)"
+          }
+        }
+      }
+    },
+    "$%@" : {
+
+    },
+    "₹%@" : {
+
+    },
+    "20% OFF" : {
+
+    },
+    "Account" : {
+
+    },
+    "Add to Cart" : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Authenticate" : {
+
+    },
+    "Biometric Authentication Required" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cart" : {
+
+    },
+    "Categories" : {
+
+    },
+    "Category" : {
+
+    },
+    "Chat" : {
+
+    },
+    "Description" : {
+
+    },
+    "Enable App Lock" : {
+
+    },
+    "Featured Products" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Featured Products French"
+          }
+        }
+      }
+    },
+    "Hello," : {
+
+    },
+    "Home" : {
+
+    },
+    "Image URL" : {
+
+    },
+    "LIMITED TIME DEAL" : {
+
+    },
+    "Mode" : {
+
+    },
+    "Mode: Light" : {
+
+    },
+    "My Activity" : {
+
+    },
+    "My Orders" : {
+
+    },
+    "Name" : {
+
+    },
+    "New Product" : {
+
+    },
+    "No new notifications" : {
+
+    },
+    "No products in your cart" : {
+
+    },
+    "No products in your wishlist" : {
+
+    },
+    "Notifications" : {
+
+    },
+    "On all electronics" : {
+
+    },
+    "On selected categories" : {
+
+    },
+    "Others" : {
+
+    },
+    "Price" : {
+
+    },
+    "Product Details" : {
+
+    },
+    "Save Product" : {
+
+    },
+    "Search orders..." : {
+
+    },
+    "Search..." : {
+
+    },
+    "Security" : {
+
+    },
+    "See All" : {
+
+    },
+    "Select Category" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Shop Now" : {
+
+    },
+    "Stay in touch! You will find all the new updates here" : {
+
+    },
+    "Support" : {
+
+    },
+    "Type a message..." : {
+
+    },
+    "Up to 50% OFF" : {
+
+    },
+    "User" : {
+
+    },
+    "Version" : {
+
+    },
+    "Version: 1.0.0" : {
+
+    },
+    "View Products" : {
+
+    },
+    "WEEKEND SALE" : {
+
+    },
+    "Wishlist" : {
+
+    },
+    "You haven't placed any orders" : {
+
+    }
+  },
+  "version" : "1.0"
+}

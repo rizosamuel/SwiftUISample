@@ -79,7 +79,7 @@ struct HomeView: View {
     
     private var featuredProductsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "Featured Products", actionLabel: "See All")
+            sectionHeader(title: "Featured Products".localized, actionLabel: "See All")
                 .onTapGesture {
                     router.navigate(to: .featuredProducts, switchTab: false)
                 }
@@ -99,7 +99,7 @@ struct HomeView: View {
     
     private var categoriesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "Shop by Category", actionLabel: "All Categories")
+            sectionHeader(title: "Shop by Category".localized, actionLabel: "All Categories")
                 .onTapGesture {
                     router.navigate(to: .categories, switchTab: true)
                 }
@@ -119,7 +119,7 @@ struct HomeView: View {
     
     private var newArrivalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "New Arrivals", actionLabel: "View More")
+            sectionHeader(title: "New Arrivals".localized, actionLabel: "View More")
                 .onTapGesture {
                     router.navigate(to: .featuredProducts, switchTab: false)
                 }
@@ -141,7 +141,7 @@ struct HomeView: View {
     
     private var specialOffersSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "Special Offers", actionLabel: "See All")
+            sectionHeader(title: "Special Offers".localized, actionLabel: "See All")
             
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
@@ -193,7 +193,7 @@ struct HomeView: View {
     
     private var recommendedSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(title: "Recommended for You", actionLabel: "View All")
+            sectionHeader(title: "Recommended for You".localized, actionLabel: "View All")
                 .onTapGesture {
                     router.navigate(to: .featuredProducts, switchTab: false)
                 }

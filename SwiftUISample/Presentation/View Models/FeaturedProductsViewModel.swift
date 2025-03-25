@@ -20,11 +20,13 @@ class FeaturedProductsViewModel: ObservableObject {
     
     func getFeaturedProducts() {
         useCase.getFeaturedProducts { [weak self] result in
-            switch result {
-            case .success(let products):
-                self?.featuredProducts = products
-            case .failure(let error):
-                self?.errorMessage = error.localizedDescription
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let products):
+                    self?.featuredProducts = products
+                case .failure(let error):
+                    self?.errorMessage = error.localizedDescription
+                }
             }
         }
     }

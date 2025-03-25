@@ -27,6 +27,7 @@ class RestAPIManager {
         var request = URLRequest(url: url)
         request.httpMethod = model.httpMethod.rawValue
         request.httpBody = model.body
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
 }
@@ -61,7 +62,7 @@ extension RestAPIManager: APIService {
                 completion(.success(decodedData))
             } catch {
                 print("Could not decode response \(error.localizedDescription)")
-                print("The recieved data is \(data.printJSON())")
+                print("The recieved data is: \n \(data.prettyPrinted())")
                 completion(.failure(error))
             }
         }.resume()

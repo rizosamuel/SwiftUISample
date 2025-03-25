@@ -20,16 +20,18 @@ protocol Router: ObservableObject {
     var myOrdersPath: NavigationPath { get set }
     var accountPath: NavigationPath { get set }
     
+    // var presentedModal: Modal? { get }
+    var presentedModals: [Modal] { get }
     var selectedTabIndex: Int { get set }
-    var navigationEventHandler: ((NavigationEvent) -> Void)? { get set }
+    var navigationEventHandler: ((NavigationEvent) -> Void)? { get }
     
     func navigate(to route: Route, switchTab: Bool)
     func canNavigate(to route: Route) -> Bool
     func goBack()
     func resetToRoot(for tab: Tab)
     func resetAll()
-    // func presentModal(_ modal: ModalType)
-    // func dismissModal()
+    func presentModal(_ modal: Modal)
+    func dismissModal()
     // func handleDeepLink(url: URL)
 }
 
@@ -39,7 +41,8 @@ class RouterImpl: Router {
     @Published var categoriesPath = NavigationPath()
     @Published var myOrdersPath = NavigationPath()
     @Published var accountPath = NavigationPath()
-    
+    // @Published var presentedModal: Modal? = nil
+    @Published var presentedModals: [Modal] = []
     @Published var selectedTabIndex: Int = 0 {
         didSet {
             guard let tab = Tab.getCurrentTab(with: selectedTabIndex) else {
@@ -49,10 +52,8 @@ class RouterImpl: Router {
         }
     }
     
-    var navigationEventHandler: ((NavigationEvent) -> Void)?
-    
+    private(set) var navigationEventHandler: ((NavigationEvent) -> Void)?
     private var navigationHistory: [Tab: [Route]] = [:]
-    
     private var selectedTab: Tab = .home
     
     init() {
@@ -102,6 +103,20 @@ class RouterImpl: Router {
         return true
     }
     
+    func presentModal(_ modal: Modal) {
+        // guard presentedModal != modal else { return }
+        // presentedModal = modal
+        guard !presentedModals.contains(modal) else { return }
+        presentedModals.append(modal)  // Push modal to stack
+        
+    }
+    
+    func dismissModal() {
+        // presentedModal = nil
+        guard !presentedModals.isEmpty else { return }
+        presentedModals.removeLast()  // Pop the last modal
+    }
+    
     func goBack() {
         switch selectedTab {
         case .home where !homePath.isEmpty:
@@ -147,5 +162,22 @@ class RouterImpl: Router {
         accountPath.removeLast(accountPath.count)
         navigationHistory[.account] = []
         selectedTabIndex = 0
+        // presentedModal = nil
+        presentedModals.removeAll()
+    }
+    
+    var presentedModalBinding: Binding<Modal?> {
+        Binding(
+            get: {
+                // self.presentedModal
+                self.presentedModals.last
+            },
+            set: { newValue in
+                // _ in self.dismissModal()
+                if newValue == nil {
+                    self.dismissModal()
+                }
+            }
+        )
     }
 }

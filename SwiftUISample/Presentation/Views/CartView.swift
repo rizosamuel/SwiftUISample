@@ -44,6 +44,8 @@ struct CartView: View {
                 Spacer()
             }
             .navigationTitle("Cart")
+            .navigationBarItems(trailing: Button("Cancel") {
+                router.dismissModal()            })
         }
         .accessibilityIdentifier("CartView")
     }
